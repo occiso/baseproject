@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <!--persistence-unit name="eclipseLink-PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>es.jose.entity.Departamento</class>
+        <class>es.jose.entity.Empresa</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="javax.persistence.jdbc.user" value="jbernat"/>
+            <property name="javax.persistence.jdbc.password" value="josebegor"/>        
+        </properties>
+    </persistence-unit-->
+  <!-- Conection pool con servidor de aplicaciones glassfish-->
+  <persistence-unit name="hibernate-PU" transaction-type="JTA">
+    <jta-data-source>jdbc/oracle-xe</jta-data-source>
+    <class>es.jose.entity.Departamentot</class>
+    <class>es.es.jose.entity.Empresa</class>
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+      <property name="hibernate.showSql" value="true"/>
+      <!--property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/-->
+    </properties>
+  </persistence-unit>
+  <!-- Conexion ejecutar applicaciones JAVA desde el main -->
+  <persistence-unit name="hibernate-main-PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>es.jose.entity.Departamentot</class>
+    <class>es.es.jose.entity.Empresa</class>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+      <property name="javax.persistence.jdbc.user" value="jbernat"/>
+      <property name="javax.persistence.jdbc.password" value="josebegor"/>
+      <property name="hibernate.connection.pool_size" value="1"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+      <!--property name="show_sql" value="true"/-->
+      <!--property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/-->
+    </properties>
+  </persistence-unit>
+</persistence>

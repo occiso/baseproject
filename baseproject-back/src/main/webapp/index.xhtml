@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <h:body>
+        <ui:composition template="/template/principal.xhtml">
+            <ui:define name="content">
+                <h:form >
+                    jose prueba
+                    <p:dataTable var="empresa" value="#{empresaController.empresas}">
+                        <p:column headerText="id">
+                            <h:outputText value="#{empresa.id}"/>
+                        </p:column>
+                        <p:column headerText="nombre">
+                            <h:outputText value="#{empresa.nombre}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+
+                <h:form>                
+                    <p:messages id="msg"/>
+                    <h3>Empresa</h3>                
+
+                    <p:selectOneMenu   value="#{empresaController.selectedEmpresa}"
+                                       valueChangeListener="#{empresaController.handleEmpresaChange}"
+                                       converter="#{empresaConverter}">                        
+                        <f:selectItems var="empresa"
+                                       value="#{empresaController.empresas}"
+                                       itemLabel="#{empresa.nombre}"
+                                       itemValue="#{empresa.id}"/>
+
+                        <p:ajax event="change"  update="departamentos, dtDepartamentos, msg"/>
+                    </p:selectOneMenu>                
+
+                    <p:selectOneMenu   id="departamentos" >                                  
+                        <f:selectItems value="#{empresaController.selectedEmpresa.departamentos}"
+                                       var="departamento"
+                                       itemLabel="#{departamento.nombre}"
+                                       itemValue="#{departamento.id}">
+                        </f:selectItems>
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="enviar" update="msg"/>
+
+                    <p:dataTable id="dtDepartamentos" var="departamentos"  value="#{empresaController.selectedEmpresa.departamentos}"   >
+                        <p:column headerText="id">
+                            <h:outputText value="#{departamentos.id}"/>
+                        </p:column>
+                        <p:column headerText="departamento">
+                            <h:outputText value="#{departamentos.nombre}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+
+    </h:body>
+</html>
