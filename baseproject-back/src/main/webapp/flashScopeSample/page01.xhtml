@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">      
+    <h:body>
+        <ui:composition template="/template/principal.xhtml">
+            <ui:define name="content">
+                <h:form id="frmpage2" >
+                    <p:messages autoUpdate="true" closable="true" />
+                     <h:panelGrid columns="2">
+                        <h:outputText value="userName"/>
+                        <h:inputText id="username" value="#{flash.userName}" required="true"/>
+                        <h:outputText value="age"/>
+                        <h:inputText id="age" value="#{flash.age}" required="true"/>
+                        <h:outputText value="country"/>
+                        <h:inputText id="country" value="#{flash.country}" required="true"/>
+                    </h:panelGrid>
+                    <h:commandButton action="/flashScopeSample/page02.xhtml?faces-redirect=true" value="next"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+
+    </h:body>
+</html>
