@@ -13,8 +13,8 @@ public class FlashScopeSampleController implements Serializable{
     public String save(){
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
         
-        String userName = (String) flash.get("username");
-        Number age = (Number) flash.get("age");
+        String userName = (String) flash.get("userName");
+        Integer age = Integer.parseInt( (String)flash.get("age"));
         String country = (String) flash.get("country");
         
         System.out.println("recpilacion de datos");
