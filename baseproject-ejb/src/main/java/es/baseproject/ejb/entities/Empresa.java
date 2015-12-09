@@ -26,7 +26,7 @@ public class Empresa implements Serializable {
     }
     
     @Id
-    @GeneratedValue
+    //@GeneratedValue
     @Column(name = "ID")
     private Long id;
 
